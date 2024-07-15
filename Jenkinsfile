@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     apt-get update
-                    apt-get install -y python3 python3-pip python3.12-venv git
+                    apt-get install -y python3 python3-pip python3.12-venv git pipx
                     pip -h
                 '''
             }
@@ -32,7 +32,7 @@ pipeline {
                 sh 'python3 -m venv .python-test'
                 sh 'cd .python-test'
                 // sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
-                sh 'pip install cyclonedx-bom'
+                sh 'pipx install cyclonedx-bom'
                 sh 'ls -al'
                 sh 'cd cyclonedx-python'
                 sh 'cyclonedx-py environment'
