@@ -26,12 +26,13 @@ pipeline {
         }
         stage('Get Python SBOM'){
             steps{
-                sh 'apt-get install git'
-                sh 'apt-get install -y pipx'
+                sh 'pwd'
+                // sh 'apt-get install git'
+                // sh 'apt-get install -y pipx'
                 // sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
-                sh 'pipx install cyclonedx-bom'
-                sh 'pipx ensurepath'
-                sh 'cyclonedx-py -h'
+                // sh 'pipx install cyclonedx-bom'
+                // sh 'pipx ensurepath'
+                // sh 'cyclonedx-py -h'
                 // sh 'cd cyclonedx-python'
                 // sh 'cyclonedx-py environment -o bom.json'
                 // sh 'cat bom.json'
