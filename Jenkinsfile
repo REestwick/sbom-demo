@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     apt-get update
-                    apt-get install -y python3 python3-pip git
+                    apt-get install -y python3 python3-pip python3.12-venv git
                     pip -h
                 '''
             }
@@ -29,7 +29,6 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 sh 'python3 --version'
-                sh 'apt install python3.12-venv'
                 sh 'python3 -m venv .python-test'
                 sh 'ls -al'
                 // sh 'apt-get install git'
