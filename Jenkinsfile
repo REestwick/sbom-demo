@@ -1,7 +1,10 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent any
+    // agent any
+    agent {
+        docker { image 'ubuntu:latest'}
+    }
     stages {
         stage('Print hello') {
             steps {
