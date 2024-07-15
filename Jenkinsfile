@@ -29,6 +29,8 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 sh 'python3 --version'
+                sh 'python3 -m venv .python-test'
+                sh 'ls'
                 // sh 'apt-get install git'
                 // sh 'apt-get install -y pipx'
                 // sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
