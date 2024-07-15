@@ -31,7 +31,7 @@ pipeline {
                 sh 'python3 --version'
                 sh 'python3 -m venv .python-test'
                 sh 'cd .python-test'
-                sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
+                // sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
                 sh 'pip install cyclonedx-bom'
                 sh 'ls -al'
                 sh 'cd cyclonedx-python'
