@@ -27,6 +27,7 @@ pipeline {
         stage('Get Python SBOM'){
             steps{
                 sh 'pwd'
+                sh 'ls'
                 // sh 'apt-get install git'
                 // sh 'apt-get install -y pipx'
                 // sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
