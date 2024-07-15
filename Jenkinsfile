@@ -14,6 +14,7 @@ pipeline {
 
         stage('Get Python SBOM'){
             steps{
+                sh 'sh “chown -R 1000 ./”'
                 sh 'sudo apt install git'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
                 sh 'pip install cyclonedx-bom'
