@@ -18,7 +18,7 @@ pipeline {
                 sh 'npm --version'
                 sh 'npm install --global @cyclonedx/cyclonedx-npm'
                 sh 'apt install -y git'
-                sh 'rm -r cyclonedx-node-npm'
+                // sh 'rm -r cyclonedx-node-npm'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-node-npm.git'
                 sh 'cyclonedx-npm -h'
                 dir ('cyclonedx-node-npm'){
@@ -52,7 +52,7 @@ pipeline {
                 sh 'pip --version'
                 sh 'pip install cyclonedx-bom'
                 sh 'apt install -y git'
-                sh 'rm -r cyclonedx-python'
+                // sh 'rm -r cyclonedx-python'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
                 sh 'cyclonedx-py -h'
                 dir('cyclonedx-python'){
@@ -82,7 +82,7 @@ pipeline {
             steps {
                 sh 'go version'
                 sh 'go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest'
-                sh 'rm -r cyclonedx-gomod'
+                // sh 'rm -r cyclonedx-gomod'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-gomod.git'
                 sh 'cyclonedx-gomod -h'
                 dir('cyclonedx-gomod'){
