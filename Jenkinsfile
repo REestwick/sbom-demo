@@ -141,6 +141,7 @@ pipeline {
                 dir('cyclonedx-rust-cargo'){
                     sh 'cargo cyclonedx --manifest-path cargo-cyclonedx/Cargo.toml -f json'
                     sh 'ls'
+                    sh 'ls cargo-cyclonedx/'
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                     sbomStudio filePath: 'cargo-cyclonedx/cdx-cargo-rust.cdx.json',
                                 manufacturerId: 'Cybeats', 
