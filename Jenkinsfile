@@ -164,6 +164,8 @@ pipeline {
                     }
             } 
             steps {
+                sh 'apt install -y git'
+                sh 'git --help'
                 sh 'mvn -v'
                 script {
                     if (fileExists('./cyclonedx-maven-plugin')){
