@@ -21,7 +21,7 @@ pipeline {
                 script {
                     if (fileExists('./cyclonedx-node-npm')){
                         echo 'folder already exists, removing...'
-                        rm 'cyclonedx-node-npm'
+                        sh 'rm -r cyclonedx-node-npm'
                     }
                 }
                 // sh 'rm -r cyclonedx-node-npm'
@@ -61,7 +61,7 @@ pipeline {
                 script {
                     if (fileExists('./cyclonedx-python')){
                         echo 'folder already exists, removing...'
-                        rm 'cyclonedx-python'
+                        sh 'rm -r cyclonedx-python'
                     }
                 }
                 // sh 'rm -r cyclonedx-python'
@@ -97,7 +97,7 @@ pipeline {
                                 script {
                     if (fileExists('./cyclonedx-gomod')){
                         echo 'folder already exists, removing...'
-                        rm 'cyclonedx-gomod'
+                        sh 'rm -r cyclonedx-gomod'
                     }
                 }
                 // sh 'rm -r cyclonedx-gomod'
