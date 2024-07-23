@@ -20,10 +20,8 @@ pipeline {
                 sh 'apt install -y git'
                 script {
                     if (fileExists('./cyclonedx-node-npm')){
-                        echo 'Directory exists'
-                    }
-                    else{
-                        echo 'FOLDER NOT EXIST'
+                        echo 'folder already exists, removing...'
+                        rm 'cyclonedx-node-npm'
                     }
                 }
                 // sh 'rm -r cyclonedx-node-npm'
@@ -60,6 +58,12 @@ pipeline {
                 sh 'pip --version'
                 sh 'pip install cyclonedx-bom'
                 sh 'apt install -y git'
+                script {
+                    if (fileExists('./cyclonedx-python')){
+                        echo 'folder already exists, removing...'
+                        rm 'cyclonedx-python'
+                    }
+                }
                 // sh 'rm -r cyclonedx-python'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
                 sh 'cyclonedx-py -h'
@@ -90,6 +94,12 @@ pipeline {
             steps {
                 sh 'go version'
                 sh 'go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest'
+                                script {
+                    if (fileExists('./cyclonedx-gomod')){
+                        echo 'folder already exists, removing...'
+                        rm 'cyclonedx-gomod'
+                    }
+                }
                 // sh 'rm -r cyclonedx-gomod'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-gomod.git'
                 sh 'cyclonedx-gomod -h'
