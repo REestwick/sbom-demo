@@ -179,7 +179,7 @@ pipeline {
                     sh 'mvn clean install'
                     sh 'ls target'
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    sbomStudio filePath: 'cyclonedx-maven-plugin/target/bom.json',
+                    sbomStudio filePath: 'target/bom.json',
                                 manufacturerId: 'Cybeats', 
                                 pkgType: 'cargo', 
                                 sbomComponentName: 'CycloneDX-Java-Test', 
