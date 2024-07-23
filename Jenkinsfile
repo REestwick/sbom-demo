@@ -56,8 +56,18 @@ pipeline {
         //         sh 'git clone https://github.com/CycloneDX/cyclonedx-python.git'
         //         sh 'cyclonedx-py -h'
         //         dir('cyclonedx-python'){
-        //             sh 'cyclonedx-py environment -o bom.json'
-        //             sh 'ls'
+        //             sh 'cyclonedx-py environment -o cdx-python-sbom.json'
+        //             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+        //             sbomStudio filePath: 'cdx-python-sbom.json',
+        //                         manufacturerId: 'Cybeats', 
+        //                         pkgType: 'pypi', 
+        //                         sbomComponentName: 'CycloneDX-Python-Test', 
+        //                         sbomComponentNamespace: '', 
+        //                         sbomComponentVersion: '1.0.0', 
+        //                         subType: 'application', 
+        //                         supplierId: 'Cybeats'
+        //             }
+                    
         //         }
         //     }
             
@@ -71,6 +81,23 @@ pipeline {
             } 
             steps {
                 sh 'go version'
+                sh 'go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest'
+                sh 'git clone https://github.com/CycloneDX/cyclonedx-gomod.git'
+                sh 'cyclonedx-gomod -h'
+                dir(cyclonedx-gomod){
+                    sh 'cyclonedx-gomod mod -output cdx-gomod.cdx.json -json=True'
+                    sh 'ls'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    sbomStudio filePath: 'cdx-gomod.cdx.json',
+                                manufacturerId: 'Cybeats', 
+                                pkgType: 'golang', 
+                                sbomComponentName: 'CycloneDX-Golang-Test', 
+                                sbomComponentNamespace: '', 
+                                sbomComponentVersion: '1.0.0', 
+                                subType: 'application', 
+                                supplierId: 'Cybeats'
+                    }
+                }
             }
             
         }
