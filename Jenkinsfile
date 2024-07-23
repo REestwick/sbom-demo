@@ -18,6 +18,12 @@ pipeline {
                 sh 'npm --version'
                 sh 'npm install --global @cyclonedx/cyclonedx-npm'
                 sh 'apt install -y git'
+                if (fileExists('./cyclonedx-node-npm')){
+                    echo 'Directory exists'
+                }
+                else{
+                    echo 'FOLDER NOT EXIST'
+                }
                 // sh 'rm -r cyclonedx-node-npm'
                 sh 'git clone https://github.com/CycloneDX/cyclonedx-node-npm.git'
                 sh 'cyclonedx-npm -h'
