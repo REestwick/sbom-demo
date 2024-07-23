@@ -159,7 +159,7 @@ pipeline {
         stage('Java'){
             agent {
                     docker { 
-                                image 'maven:3.9.8-amazoncorretto-17-debian-bookworm' 
+                                image 'maven:3.9.8-eclipse-temurin-17-focal' 
                                 args '-u root'
                     }
             } 
