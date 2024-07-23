@@ -177,6 +177,7 @@ pipeline {
                 dir('cyclonedx-maven-plugin'){
                     sh 'ls'
                     sh 'mvn clean install'
+                    ls 'target'
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                     sbomStudio filePath: 'cyclonedx-maven-plugin/target/bom.json',
                                 manufacturerId: 'Cybeats', 
