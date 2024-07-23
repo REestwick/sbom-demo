@@ -143,7 +143,7 @@ pipeline {
                     sh 'ls'
                     sh 'ls cargo-cyclonedx/'
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    sbomStudio filePath: 'cargo-cyclonedx/cdx-cargo-rust.cdx.json',
+                    sbomStudio filePath: 'cargo-cyclonedx/cargo-cyclonedx.cdx.json',
                                 manufacturerId: 'Cybeats', 
                                 pkgType: 'cargo', 
                                 sbomComponentName: 'CycloneDX-Rust-Test', 
