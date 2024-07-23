@@ -120,33 +120,66 @@ pipeline {
         //     }
             
         // }
-        stage('Rust'){
+        // stage('Rust'){
+        //     agent {
+        //             docker { 
+        //                         image 'rust:1.79-bullseye' 
+        //                         args '-u root'
+        //             }
+        //     } 
+        //     steps {
+        //         sh 'cargo version'
+        //         sh 'cargo install cargo-cyclonedx'
+        //         script {
+        //             if (fileExists('./cyclonedx-rust-cargo')){
+        //                 echo 'folder already exists, removing...'
+        //                 sh 'rm -r cyclonedx-rust-cargo'
+        //             }
+        //         }
+        //         sh 'git clone https://github.com/CycloneDX/cyclonedx-rust-cargo.git'
+        //         sh 'cargo cyclonedx -h'
+        //         dir('cyclonedx-rust-cargo'){
+        //             sh 'cargo cyclonedx --manifest-path cargo-cyclonedx/Cargo.toml -f json'
+        //             sh 'ls'
+        //             sh 'ls cargo-cyclonedx/'
+        //             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+        //             sbomStudio filePath: 'cargo-cyclonedx/cargo-cyclonedx.cdx.json',
+        //                         manufacturerId: 'Cybeats', 
+        //                         pkgType: 'cargo', 
+        //                         sbomComponentName: 'CycloneDX-Rust-Test', 
+        //                         sbomComponentNamespace: '', 
+        //                         sbomComponentVersion: '1.0.0', 
+        //                         subType: 'application', 
+        //                         supplierId: 'Cybeats'
+        //             }
+        //         }
+        //     }
+            
+        // }
+        stage('Java'){
             agent {
                     docker { 
-                                image 'rust:1.79-bullseye' 
+                                image 'mvn:3.9.8-amazoncorretto-17-debian-bookworm' 
                                 args '-u root'
                     }
             } 
             steps {
-                sh 'cargo version'
-                sh 'cargo install cargo-cyclonedx'
+                sh 'mvn -v'
                 script {
-                    if (fileExists('./cyclonedx-rust-cargo')){
+                    if (fileExists('./cyclonedx-maven-plugin')){
                         echo 'folder already exists, removing...'
-                        sh 'rm -r cyclonedx-rust-cargo'
+                        sh 'rm -r cyclonedx-maven-plugin'
                     }
                 }
-                sh 'git clone https://github.com/CycloneDX/cyclonedx-rust-cargo.git'
-                sh 'cargo cyclonedx -h'
-                dir('cyclonedx-rust-cargo'){
-                    sh 'cargo cyclonedx --manifest-path cargo-cyclonedx/Cargo.toml -f json'
+                sh 'git clone https://github.com/CycloneDX/cyclonedx-maven-plugin.git'
+                dir('cyclonedx-maven-plugin'){
                     sh 'ls'
-                    sh 'ls cargo-cyclonedx/'
+                    sh 'mvn clean install'
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    sbomStudio filePath: 'cargo-cyclonedx/cargo-cyclonedx.cdx.json',
+                    sbomStudio filePath: 'cyclonedx-maven-plugin/target/bom.json',
                                 manufacturerId: 'Cybeats', 
                                 pkgType: 'cargo', 
-                                sbomComponentName: 'CycloneDX-Rust-Test', 
+                                sbomComponentName: 'CycloneDX-Java-Test', 
                                 sbomComponentNamespace: '', 
                                 sbomComponentVersion: '1.0.0', 
                                 subType: 'application', 
